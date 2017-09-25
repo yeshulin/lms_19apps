@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 默认皮肤的播放器配置文件 -->
+<config>
+	<!-- 皮肤的目录 level 表示级别-->
+	<skinswf>
+		<rightMenu>com/sobey/player/style/defaultstyle/view/plugins/vod/rightmenu/DefaultStyleRightMenu.swf</rightMenu>
+		<sharePanel>com/sobey/player/style/defaultstyle/view/plugins/vod/share/DefaultStyleSharePanel.swf</sharePanel>
+		<controlBar>com/sobey/player/style/defaultstyle/view/plugins/vod/controlbar/DefaultStyleControlBar.swf</controlBar>
+		<screenshot>com/sobey/player/style/defaultstyle/view/plugins/vod/video/DefaultStyleScreenShotWindow.swf</screenshot>
+		<episode>com/sobey/player/style/defaultstyle/view/plugins/vod/episode/DefaultStyleEpisode.swf</episode>
+		<videorect>com/sobey/player/style/defaultstyle/view/plugins/vod/video/DefaultStyleVideoContent.swf</videorect>
+		<livepanel>com/sobey/player/style/defaultstyle/view/plugins/live/DefaultStyleLivePanel.swf</livepanel>
+		<programGuides>com/sobey/player/style/defaultstyle/view/plugins/vod/programGuides/DefaultProgramGuide.swf</programGuides>
+	</skinswf>
+	<playerskin zip="com/sobey/player/style/defaultstyle/view/image.zipt"><!-- 皮肤配置 -->
+		<!-- name用於标识是哪个按钮或组件的皮肤 src表示图片的相对路径 有多张图片的话用分号隔开 按钮一般第一张为普通状态 第二张为鼠标移上状态 -->
+
+		<!-- 注意 里面的name值不要乱改 程序里面根据这个来解析的-->
+		<!-- 播放按钮 -->
+		<item name="play_button" src="image/button/play_normal.png,image/button/play_over.png" />
+		<!-- 暂停按钮 -->
+		<item name="pause_button" src="image/button/pause_normal.png,image/button/pause_over.png" />
+		<!-- 音量按钮 -->
+		<item name="horn_button" src="image/volume/horn_normal.png,image/volume/horn_over.png" />
+		<!-- 全屏按钮 -->
+		<item name="full_screen_button" src="image/button/full_screen_normal.png,image/button/full_screen_over.png" />
+		<!-- 退出全屏按钮 -->
+		<item name="exit_full_button" src="image/button/exit_full_normal.png,image/button/exit_full_over.png" />
+		<!-- 控制栏背景 -->
+		<item name="control_bar_back_ground" src="image/controlbar_bg/controlbar_bg.png" />
+		<!-- 进度条背景 -->
+		<item name="stream_total_progresbar" src="image/progressbar/totoal_progress.png" />
+		<!-- 缓冲进度条 -->
+		<item name="stream_buffer_progressbar" src="image/progressbar/buffer_progress.png" />
+		<!-- 播放进度条 -->
+		<item name="stream_play_progress_bar" src="image/progressbar/play_progress.png" />
+		<!-- 进度条上的那个滑块 -->
+		<item name="stream_seek_button" src="image/progressbar/slider.png" />
+		<!-- 进度条上的提示点 -->
+		<item name="seek_point_tip_button" src="image/progressbar/seek_point_tip_button.png" />
+		<!-- 音量设置背景 鼠标移到音量按钮上的那个弹窗 -->
+		<item name="volume_back_ground" src="image/volume/slider_bg.png" />
+		<!-- 音量进度条 就是背景条 -->
+		<item name="volume_total_progress" src="image/volume/progress_bg.png" />
+		<!-- 音量的当前进度 -->
+		<item name="volume_current_progress" src="image/volume/progress_value.png" />
+		<!-- 音量上的滑块 -->
+		<item name="volume_slider_button" src="image/volume/slider.png" />
+		<!-- 下一集 -->
+		<item name="next_part_button"	src="image/button/next_normal.png,image/button/next_over.png" />
+		<!-- 画质 -->
+		<item name="video_quality_button" src="image/button/clarity_normal.png,image/button/clarity_over.png" />
+		<!-- 设置按钮  -->
+		<item name="player_set_button" src="image/button/set_normal.png,image/button/set_over.png" />
+		<!-- 音量增加按钮  就是那个 + 号按钮  -->
+		<item name="add_volume_button" src="image/volume/add_volume.png" />
+		<!-- 音量减少按钮 就是那个 - 号按钮  -->
+		<item name="reduce_volume_button" src="image/volume/reduce_volume.png" />
+		<!-- 缓冲图片 -->
+		<item name="buffer_image" src="image/buffer/1.png,image/buffer/2.png,image/buffer/3.png,image/buffer/4.png,image/buffer/5.png,image/buffer/6.png,image/buffer/7.png,image/buffer/8.png" />
+		<!-- 广告了解详情 -->
+		<item name="about_adv_alert" src="image/adv/about_abv.png" />
+		<!-- 关闭广告声音按钮  -->
+		<item name="close_adv_sound_button" src="image/adv/sound_close_normal.png,image/adv/sound_close_over.png" />
+		<!-- 开启声音按钮  -->
+		<item name="open_adv_sound_button" src="image/adv/close_adv_sound.png" />
+		<!-- 关闭按钮 -->
+		<item name="pause_adv_closelbtn" src="image/share/screen_shot_close_normal.png,image/share/screen_shot_close_over.png"/>
+		<!-- 全屏按钮提示  -->
+		<item name="full_scrren_tip" src="image/tip/full_screen_tip.png" />
+		<!-- 下一集  -->
+		<item name="next_part_tip" src="image/tip/next_tip.png" />
+		<!-- 谢谢提示  -->
+		<item name="play_tip" src="image/tip/play_tip.png" />
+		<!-- 跳转点的提示  -->
+		<item name="seep_point_tip_view" src="image/tip/seek_point_preview.png" />
+		<!-- 视频设置背景 就是鼠标移到设置那的弹窗背景 -->
+		<item name="video_set_background" src="image/video_set/video_set_bg.png" />
+		<!-- 画面设置 -->
+		<item name="video_filter" src="image/video_set/video_filter.png" />
+		<!-- 缩放比例 -->
+		<item name="video_scale" src="image/video_set/video_scale.png" />
+		<!-- 亮度进度条背景  -->
+		<item name="bright_total_progressbar" src="image/video_set/bright_totoal_progress.png" />
+		<!-- 当前亮度 -->
+		<item name="bright_current_progressbar" src="image/video_set/bright_progress.png" />
+		<!-- 亮度调整的滑块 -->
+		<item name="bright_slide_button" src="image/video_set/bright_slider.png" />
+		<!-- 开灯按钮 -->
+		<item name="open_light_button" src="image/share/close_light_normal.png,image/share/close_light_over.png" />
+		<!-- 分享窗口上的关闭按钮 -->
+		<item name="close_sharebutton" src="image/share/close_share_normal.png,image/share/close_share_over.png" />
+		<!-- 复制按钮 -->
+		<item name="copy_button" src="image/share/copy_normal.png,image/share/copy_over.png" />
+		<!-- 复制成功 -->
+		<item name="copy_success" src="image/share/copy_success.png" />
+		<!-- 关灯 -->
+		<item name="close_light_button" src="image/share/open_light_normal.png,image/share/open_light_over.png" />
+		<!-- 右侧分享背景 -->
+		<item name="right_share_bg" src="image/share/right_share_bg.png" />
+		<!-- 分享功能的间隔线 -->
+		<item name="share_gap" src="image/share/share_gap.png" />
+		<!-- 分享按钮 -->
+		<item name="share_button" src="image/share/share_normal.png,image/share/share_over.png" />
+		<!-- 分享到QQ -->
+		<item name="share_qq" src="image/share/share_qq.png" />
+		<!-- 分享到QQ微博 -->
+		<item name="share_qq_weibo" src="image/share/share_qq_weibo.png" />
+		<!-- 分享到QQ空间 -->
+		<item name="share_qzone" src="image/share/share_qzone.png" />
+		<!-- 分享朋友 -->
+		<item name="share_pengyou" src="image/share/share_pengyou.png" />
+		<!-- 分享到人人 -->
+		<item name="share_renren" src="image/share/share_ren.png" />
+		<!-- 分享到新浪 -->
+		<item name="share_sina" src="image/share/share_sina.png" />
+		<!-- 分享到豆瓣 -->
+		<item name="share_dou_ban" src="image/share/share_dou_ban.png" />
+		<!-- 分享窗体背景 -->
+		<item name="share_win_bg" src="image/share/share_win_bg.png" />
+		<!-- 小窗口 -->
+		<item name="small_win_button" src="image/share/small_normal.png,image/share/small_over.png" />
+		<!-- 视频画质 -->
+		<item name="video_quality_bg" src="image/controlbar_bg/video_quality_bg.png"/>
+		<!-- 提示时间点 -->
+		<item name="seek_point_time" src="image/tip/seek_point_time.png"/>
+		<!-- 单选按钮  主要还是针对分享平台上的 -->
+		<item name="share_radio_button" src="image/button/share_radioButton_normal.png,image/button/share_radioButton_over.png,image/button/share_radioButton_selected_normal.png,image/button/share_radioButton_selected_over.png"/>
+		<!-- 剧集图片 没加载出来的时候临时一张图片 -->
+		<item name="episodepreview" src="image/tip/episodepreview.png" />
+		<!-- 截图分享按钮 -->
+		<item name="screenshotbtn" src="image/button/screen_shot_button_normal.png,image/button/screen_shot_button_over.png"/>
+		<!-- 截图分享背景 -->
+		<item name="screen_shot_bg" src="image/share/screen_shot_bg.png"/>
+		<!-- 截图分享取消按钮 -->
+		<item name="screen_shot_cancelbtn" src="image/share/screen_shot_cancel_normal.png,image/share/screen_shot_cancel_over.png"/>
+		<!-- 截图分享取消按钮 -->
+		<item name="screen_shot_closelbtn" src="image/share/screen_shot_close_normal.png,image/share/screen_shot_close_over.png"/>
+		<!-- 截图分享取消按钮 -->
+		<item name="screen_shot_okbtn" src="image/share/screen_shot_sure_normal.png,image/share/screen_shot_sure_over.png"/>
+			<!-- 截图分享背景 -->
+		<item name="screen_shot_share_pengyou" src="image/share/screen_shot_share_pengyou.png"/>
+			<!-- 截图分享背景 -->
+		<item name="screen_shot_share_qzone" src="image/share/screen_shot_share_qzone.png"/>
+			<!-- 截图分享背景 -->
+		<item name="screen_shot_share_sina" src="image/share/screen_shot_share_sina.png"/>
+		<!-- 剧集背景 -->
+		<item name="episode_list_bg" src="image/episode/list_bg.png"/>
+		<!-- 剧集滚动条背景 -->
+		<item name="episode_scroller_bg" src="image/episode/episode_scroller_bg.png"/>
+		<!-- 剧集滚动条 -->
+		<item name="episode_scroller_slider" src="image/episode/episode_scroller_slider.png"/>
+		<!-- 暂停的时候悬浮在视频区域的那个播放按钮 -->
+		<item name="replay_button" src="image/videocontent/replay.png,image/videocontent/replay_over.png"/>
+		<!-- 直播面板上头顶那个日期的悬浮箭头按钮 -->
+		<item name="live_panel_left_arrow" src="image/button/left_arrow_normal.png,image/button/left_arrow_over.png"/>
+		<item name="live_panel_right_arrow" src="image/button/right_arrow_normal.png,image/button/right_arrow_over.png"/>
+		<!-- 视频无信号 停台标识-->
+		<item name="no_signal_image" src="image/videocontent/nosignal.jpg"/>
+		
+		<!-- 节目单按钮 -->
+		<item name="show_program_guide_button" src="image/button/show_program_guide_normal.png,image/button/show_program_guide_over.png"/>
+		
+		
+		
+		
+	</playerskin>
+	<!-- 视频设置部分 主要是针对显示比例的 -->
+	<videoset>
+		<!-- 默认根据视频本身的尺寸来 -->
+		<item data="scale" label="等比"/>
+		<item data="full" label="满屏"/>
+	</videoset>
+	<!-- 右侧菜单 -->
+	<rightmenu>
+		<!-- jsfun 是点击按钮后调的js的方法名 jsargs是调js的参数  多个用逗号隔开  -->
+		<item name="share_button" label="分享" jsfun="" jsargs=""/>
+		<item name="close_light_button" label="关灯|开灯" jsfun="closewindow" jsargs="r1"/>
+		<item name="small_win_button" label="宽屏|小窗口" jsfun="widdenwindow" jsargs="r2"/>
+	</rightmenu>
+	<!-- 分享 -->
+	<share>
+		<!-- 分享的平台 -->
+			<platform>
+				<!-- id要与skin中item节点中的name对应好  flag是js的参数 标记用在哪个平台 -->
+				<item id="share_sina" tips="新浪微博" flag="sh03"/>
+				<item id="share_qzone" tips="QQ空间" flag="sh01"/>
+<!-- 				<item id="share_qq" tips="QQ好友" /> -->
+				<item id="share_qq_weibo" tips="腾讯微博" flag="sh06"/>
+<!-- 				<item id="share_dou_ban" tips="豆瓣"/> -->
+				<item id="share_renren" tips="人人网" flag="sh02"/>
+			</platform>
+			<!-- 复制配置 -->
+			<copyurl>
+				<item id="videourl" label="网页地址:" width="258" height="30" bordercolor="0x272727" backgroundcolor="0x0"/>
+				<item id="flashurl"	label="Flash地址:"  width="258" height="30" bordercolor="0x272727" backgroundcolor="0x0"/>
+				<item id="html"	label="HTML代码:" width="258" height="30" bordercolor="0x272727" backgroundcolor="0x0"/>
+			</copyurl>
+			<screenshot funName="picShare">
+				<!-- 这里面的id 是用于js那边传的 要对接   name要与上面的skin 中item节点中的name对应好 -->
+				<item id="weibo" name="screen_shot_share_sina"/>
+				<item id="qzone" name="screen_shot_share_qzone"/>
+				<item id="pengyou" name="screen_shot_share_pengyou"/>
+			</screenshot>
+	</share>
+</config>

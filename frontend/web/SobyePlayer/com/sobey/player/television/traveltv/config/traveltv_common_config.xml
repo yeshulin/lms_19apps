@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 旅游卫视配置文件 -->
+<config>
+	<!-- 定制的插件 这些插件的节点名字要与common中的xml节点名字相对应 便于程序解析替换-->
+	<commonplugin>
+		<!-- 广告插件 -->
+		<advcontrol>com/sobey/player/television/traveltv/controller/TravelTVAdvController.swf</advcontrol>
+		<!-- 点播 -->
+		<coreplaycontrol>
+			{
+				'1':'com/sobey/player/television/traveltv/controller/TravelTVVideoVodController.swf',
+				'4':'com/sobey/player/core/controller/AudioLiveController.swf',
+				'5':'com/sobey/player/core/controller/AudioVodController.swf'
+			}
+		</coreplaycontrol>
+	</commonplugin>
+	<!-- 皮肤类插件 -->
+	<skinswf>
+		<!-- 控制条 -->
+		<controlBar>com/sobey/player/television/traveltv/controlbar/TravelTVControlBar.swf</controlBar>
+	</skinswf>
+	<!-- 这个表示额外的插件 -->
+	<extraplugin>
+	</extraplugin>
+	<!-- 广告的一些基本配置参数 delay表示在延时播放时的百分比  max表示组内最大个数 字幕表示最大组数 一组是一条
+	 innerInterval组内显示间隔 -->
+	<advparams>
+		<corner max="5" innerInterval="3" delay="1/10"/>
+		<side max="5" innerInterval="3" delay="1/10"/>
+		<insert max="3"/>
+		<caption max="5" delay="1/10" font="微软雅黑" size="18" color="0xFFFFFF"/>
+	</advparams>
+</config>

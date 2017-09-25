@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<skinswf>
+		<mainpanel>com/sobey/player/style/liteaudio/view/plugins/LiteAudioPlayerMainPanel.swf</mainpanel>
+		<livepanel>com/sobey/player/style/liteaudio/view/plugins/LiteAudioPlayerLivePanel.swf</livepanel>
+		<sharepanel>com/sobey/player/style/liteaudio/view/plugins/LiteAudioPlayerSharePanel.swf</sharepanel>
+	</skinswf>
+	<playerskin zip="com/sobey/player/style/liteaudio/view/image.zipt">
+		<!-- 皮肤配置 -->
+		<!-- name用於标识是哪个按钮或组件的皮肤 src表示图片的相对路径 有多张图片的话用分号隔开 按钮一般第一张为普通状态 第二张为鼠标移上状态 -->
+
+		<!-- 注意 里面的name值不要乱改 程序里面根据这个来解析的 -->
+		<!-- sobeycloud.png -->
+		<item name="sobeycloud" src="sobeycloud.png"/>
+		<!-- 皮肤背景 -->
+		<item name="skin_bg" src="skin_bg.png" />
+		<!-- 直播节目单按钮 -->
+		<item name="live_list_btn" src="live_list_btn_normal.png,live_list_btn_over.png" />
+		<!-- 暂停按钮 -->
+		<item name="pause_btn" src="pause_btn_normal.png,pause_btn_normal.png" />
+		<!-- 播放按钮 -->
+		<item name="play_btn" src="play_btn_normal.png,play_btn_normal.png" />
+		<!-- 分享按钮 -->
+		<item name="share_btn" src="share_btn_normal.png,share_btn_normal.png" />
+		<!-- 音量关闭按钮 -->
+		<item name="volume_close_btn" src="volume_btn_close.png,volume_btn_close.png" />
+		<!-- 音量打开按钮 -->
+		<item name="volume_open_btn" src="volume_btn_open.png,volume_btn_open.png" />
+		<!-- 分享到QQ微博 -->
+		<item name="share_qq_weibo" src="share_qqweibo.png" />
+		<!-- 分享到QQ空间 -->
+		<item name="share_qzone" src="share_qzone.png" />
+		<!-- 分享到人人 -->
+		<item name="share_renren" src="share_renren.png" />
+		<!-- 分享到新浪 -->
+		<item name="share_sina" src="share_sina.png" />
+		<!-- 进度条缓冲了部分 -->
+		<item name="buffer_progress" src="buffer_progress.png" />
+		<!-- 进度条 总进度 -->
+		<item name="totoal_progress" src="totoal_progress.png" />
+		<!-- 播放进度 -->
+		<item name="play_progress" src="play_progress.png"/>
+		<!-- 分享背景 -->
+		<item name="share_bg" src="share_bg.png"/>
+		<!--  滑块 -->
+		<item name="volume_slider" src="volume_totoal_progress.png,volume_progress.png,volume_slider.png"/>
+		<!-- 关闭 -->
+		<item name="close_share_button" src="close_share_normal.png,close_share_over.png"/>
+		<!-- 直播节目单面板标题图标 -->
+		<item name="livepanel_title" src="livepanel_title.png"/>
+		<!-- 节目单滚动条 -->
+		<item name="live_scroller" src="live_scroller_bg.png,live_scroller_slider.png"/>
+		<!-- 节目单上右边直播频道列表的的图标 -->
+		<item name="live_chanel_list_icon" src="live_chanel_list_icon.png"/>
+	</playerskin>
+
+	<!-- 分享 -->
+	<share>
+		<!-- 分享的平台 -->
+		<platform>
+			<!-- id要与skin中item节点中的name对应好 flag是js的参数 标记用在哪个平台 -->
+			<item id="share_sina" tips="新浪微博" flag="sh03" />
+			<item id="share_qzone" tips="QQ空间" flag="sh01" />
+			<item id="share_qq_weibo" tips="腾讯微博" flag="sh06" />
+			<item id="share_renren" tips="人人网" flag="sh02" />
+		</platform>
+	</share>
+</config>

@@ -1,0 +1,2 @@
+var Link1=[{"linkid":"4","name":"百度云","logo":"","url":"https://cloud.baidu.com","introduce":"华栖云"}];
+var Link3=[{"linkid":"5","name":"腾讯云","url":"https://cloud.tencent.com/","introduce":""},{"linkid":"6","name":"阿里云","logo":"","url":"http://www.aliyun.com","introduce":""},{"linkid":"8","name":"网易云","url":"https://www.163yun.com/","introduce":""}];

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 这里面放一些通用基本的配置文件 -->
+<config>
+	<!-- 主版本.次版本.bug修复 -->
+	<version des="SobeyVMSPlayerRes ">3.7.8</version>
+	<!-- js的配置 主要是一些回调方法 -->
+	<jsconfig>
+		<!-- as调js的 -->
+		<asCalljs>
+			<!-- flash调页面上的分享接口 返回一串HTML 参数 视频的id -->
+			<getShareHost>getSharingURLData</getShareHost>
+			<!-- 分享弹窗 参数 id -->
+			<share2Platform>onshareclick</share2Platform>
+		</asCalljs>
+		<!-- js调as的 -->
+		<jsCallas>
+			<item jsfun="callAs" asfun="jsCallEdit2Preview" />
+		</jsCallas>
+	</jsconfig>
+	<!-- 图片尺寸方面的 -->
+	<imagesize>
+		<!-- 播放器右边的logo -->
+		<playerlogo>70*26</playerlogo>
+		<!-- 缓冲图片 这是一个巨型大小范围 只在这个范围里面进行缩放 -->
+		<bufferimage>210*75</bufferimage>
+		<!-- 台标 这用的一个缩放比例 是沿用 -->
+		<tvlogo min="25">0.07</tvlogo>
+	</imagesize>
+	<!-- 虚拟直播相关的 -->
+	<virtuallive>
+		<!-- 虚拟直播对下一个视频预加载的提前时间 分点播和直播  单位 :分钟 -->
+		<vodPreloaderTime>5</vodPreloaderTime>
+		<livePreloaderTime>5</livePreloaderTime>
+	</virtuallive>
+	<seekparam>
+		<live>shiftime=ms</live>
+		<vod>timecode=ms</vod>
+	</seekparam>
+	<!-- 公共组件 -->
+	<commonplugin>
+		<!-- 编辑相关 -->
+		<editcontrol>com/sobey/player/core/view/plugins/edit/SobeyEditPlugin.swf
+		</editcontrol>
+		<!-- 广告插件 -->
+		<advcontrol>com/sobey/player/core/controller/AdvController.swf
+		</advcontrol>
+		<!-- 台标 -->
+		<tvlog>com/sobey/player/core/view/plugins/logo/TVLogo.swf</tvlog>
+		<!-- 核心插件 1为点播类 2为直播类 3为虚拟直播类 4为音频直播 5为音频点播  在flashvars里面有个mediatype参数 来区分类型的 -->
+		<coreplaycontrol>
+			{
+				'1':'com/sobey/player/core/controller/VideoVodController.swf',
+				'2':'com/sobey/player/core/controller/AudioLiveController.swf',
+				'3':'com/sobey/player/core/controller/VirtualLiveController.swf',
+				'4':'com/sobey/player/core/controller/AudioLiveController.swf',
+				'5':'com/sobey/player/core/controller/AudioVodController.swf'
+			}
+		</coreplaycontrol>
+	</commonplugin>
+	<!-- 这是特殊定制插件 里面有不同电视台的配置 加载解析该文件 如果根据那个播放器JSON文件返回里面字段的电台名字 下面的列表中检测 到有该台的定制文件项就要去加载该配置文件 -->
+	<spectialplugin>
+		<!-- 旅游卫视-->
+		<item name="travelTV" src="com/sobey/player/television/traveltv/config/traveltv_common_config_english.xml"/>
+	</spectialplugin>
+	<!-- 皮肤类型配置 4代表的是新加的皮肤索引  url是默认样式播放器的皮肤主类  liveskin是该样式下的直播皮肤主类-->
+	<skintype>{
+	<!-- {"classic_blue", "classic_grey", "classic_green", "classic_orange", "blackphantom_black"}; -->
+			'1':
+			{
+				'url':'com/sobey/player/style/defaultstyle/DefaultStylePlayer.swf',
+				'config':'com/sobey/player/style/defaultstyle/config/default_style_player_config_english.xml'
+			},
+			'2':
+			{
+				'url':'com/sobey/player/style/defaultstyle/DefaultStylePlayer.swf',
+				'config':'com/sobey/player/style/defaultstyle/config/default_style_player_config_english.xml'
+			},
+			'3':
+			{
+				'url':'com/sobey/player/style/defaultstyle/DefaultStylePlayer.swf',
+				'config':'com/sobey/player/style/defaultstyle/config/default_style_player_config_english.xml'
+			},
+			'4':
+			{
+				'url':'com/sobey/player/style/defaultstyle/DefaultStylePlayer.swf',
+				'config':'com/sobey/player/style/defaultstyle/config/default_style_player_config_english.xml'
+			},
+			'5':
+			{
+				'url':'com/sobey/player/style/liteaudio/LiteAudioPlayer.swf',
+				'config':'com/sobey/player/style/liteaudio/config/lite_style_audio_player_config_english.xml'
+			}
+		}
+	</skintype>
+	<countparams><![CDATA[&type=1]]></countparams>
+	<!-- 系统提示类的 -->
+	<tips>
+		<LOAD_PLAYER_CONNFIG_ERROR>Dear, The player deserted^_^ Code:401</LOAD_PLAYER_CONNFIG_ERROR>
+		<LOAD_PLAYER_EDIT_MODULE_ERROR>Dear, Player and naughty ^_^ Code:402</LOAD_PLAYER_EDIT_MODULE_ERROR>
+		<LOAD_SKIN_ICON_ERROR>Dear, The player deserted ^_^ Code:403</LOAD_SKIN_ICON_ERROR>
+		<LOAD_SKIN_CONFIG_ERROR>Dear, The player deserted ^_^ Code:404</LOAD_SKIN_CONFIG_ERROR>
+		<LOAD_VIDEO_CONFIG_ERROR>Dear, Flow media sister paper and capricious^_^ Code:405</LOAD_VIDEO_CONFIG_ERROR>
+		<LOAD_LIVEPANEL_CONFIG_ERROR>Dear, The beauty of the live broadcast look at the handsome guy.^_^ Code:406</LOAD_LIVEPANEL_CONFIG_ERROR>
+		<LOAD_LIVEPANEL_SKINCONFIG_ERROR>Dear, The beauty of the live broadcast look at the handsome guy.^_^ Code:407</LOAD_LIVEPANEL_SKINCONFIG_ERROR>
+		<STREAM_ERROR>Dear, Flow media sister paper and capricious^_^ Code:408</STREAM_ERROR>
+		<STREAM_PLAY_ERROR>Dear, Flow media sister paper and capricious ^_^ Code:409</STREAM_PLAY_ERROR>
+		<LOAD_LIVEPANEL_SKINICON_ERROR>Dear, The beauty of the live broadcast look at the handsome guy.^_^ Code:410</LOAD_LIVEPANEL_SKINICON_ERROR>
+		<MEDIA_TYPE_ERROR>Dear, Flow media sister paper and capricious^_^ Code:411</MEDIA_TYPE_ERROR>
+		<PLAYER_SKINTYPE_ERROR>Dear, The player deserted ^_^ Code:412</PLAYER_SKINTYPE_ERROR>
+		<INVOKE_CHANGE_ERROR>Dear, Flow media sister paper and capricious^_^ Code:413</INVOKE_CHANGE_ERROR>
+		<INSERT_ADV_TIPS>Dear, Video sister paper will once again, will be in 10 seconds into the ad  ^_^ </INSERT_ADV_TIPS>
+		<UPLOAD_IMAGE_TIPS>Dear, The picture is being uploaded.^_^ </UPLOAD_IMAGE_TIPS>
+		<LINE_CHANGE_TIPS>Dear, The network system has been opened time away, for you automatically switch to the line *</LINE_CHANGE_TIPS>
+		<NO_SIGNAL_TIPS>Dear, Staff members are recording the program!^_^</NO_SIGNAL_TIPS>
+		<CANT_SCREEN_SHOT>Dear, Now can not be a screenshot oh ^_^</CANT_SCREEN_SHOT>
+		<NO_VIRTUALLIVE_PROGRAM>Dear, Not found the program alone oh ^_^</NO_VIRTUALLIVE_PROGRAM>
+	</tips>
+	<biratefun>
+		<defaultbiratefun>
+			function getBirateIndex(arrData)
+			{
+				console.log(arrData);
+				return arrData[0];
+			}
+		</defaultbiratefun>
+		<customsite siteid="612">
+			<!-- 旅游卫视的   高清是512的 现在直接返回最低的码率 也就是-->
+			function getBirateIndex(arrData)
+			{
+				console.log(arrData);
+				return arrData[0];
+			}
+		</customsite>
+		<customsite siteid="594">
+			<!--新疆台-->
+			function getBirateIndex(arrData)
+			{
+				console.log(arrData);
+				return arrData[0];
+			}
+		</customsite>
+		<customsite siteid="592">
+			<!--海淀-->
+			function getBirateIndex(arrData)
+			{
+				console.log(arrData);
+				var superH="h264_1536k";//超清
+				var hight="h264_1024k";//高清
+				var standard="h264_512k";//标清
+				var normal="h264_256k";//流畅
+				var i=0;
+				<!-- 由于xml格式原因  这里面不能写小于符号 写成了@ 程序里面自动替换了的 -->
+				for(i=0;i@arrData.length;i++)
+				{
+					var s=arrData[i];
+					if(s.indexOf(hight)!=-1)
+					{
+						return i;
+					}
+				}
+				return 0;
+			}
+		</customsite>
+	</biratefun>
+</config>

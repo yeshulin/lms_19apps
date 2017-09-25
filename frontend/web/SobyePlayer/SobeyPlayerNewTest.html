@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+    <!-- 
+    Smart developers always View Source. 
+    
+    This application was built using Adobe Flex, an open source framework
+    for building rich Internet applications that get delivered via the
+    Flash Player or to desktops via Adobe AIR. 
+    
+    Learn more about Flex at http://flex.org 
+    // -->
+    <head>
+        <title></title>
+        <meta name="google" value="notranslate" />         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
+             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
+             if JavaScript disabled.
+        -->
+        <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #ffffff; }   
+            object:focus { outline:none; }
+            #flashContent { display:none; }
+        </style>
+        
+        <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+        <!-- BEGIN Browser History required section -->
+        <link rel="stylesheet" type="text/css" href="history/history.css" />
+        <script type="text/javascript" src="history/history.js"></script>
+        <!-- END Browser History required section -->  
+            
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript">
+            // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+            var swfVersionStr = "11.4.0";
+            // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+            var xiSwfUrlStr = "playerProductInstall.swf";
+            var flashvars = {};
+       		var date="731E4wFefooaffEfhebfe721203a1c";//new Date().getTime();
+       		flashvars.siteID=594;
+			
+			//直播类型 8-视频直播
+			flashvars.mediaType="8";
+			flashvars.exparam="%3FsiteId%3D882%26channelId%3D204fe35f29f54342bfaf0178792ba087";
+			flashvars.staticParams = "{'Dimension':'PC'}";
+			flashvars.profile = "ProfileTest.json";
+			
+			//直播地址 为json字符串，mr://j用于判断该地址是否直接播放，请改动rul的值
+			
+			//flv   视频
+			//flashvars.url='mr://j:{"playerUrl":[{"title":"900K","url":"http://livepgc.sobeycache.com/pgc/64215ad0707861d82add466935c84b9e.flv?auth_key=1501655488-0-0-f66c53aedf1afec50fc2b1f06744351a"}],"status":1,"catalogId":"7de7dad4be6b47b3a7d2fb24b4bb0915"}';
+			
+			//rtmp  视频
+			flashvars.url='mr://j:{"playerUrl":[{"title":"900K","url":"rtmp://livepgc.sobeycache.com/pgc/065c0f4964bac3efda3d6ed235710c08?auth_key=1501659455-0-0-9971453f98fdcababedd091b2c271fe9"}],"status":1,"catalogId":"7de7dad4be6b47b3a7d2fb24b4bb0915"}';	
+			
+			//m3u8  视频
+			//flashvars.url='mr://j:{"playerUrl":[{"title":"900K","url":"http://livepgc.sobeycache.com/pgc/4233debb406e8622dece8ae2fb845ce9.m3u8?auth_key=1501726678-0-0-a1f04f8227713f55e1026a3e06fa4315"}],"status":1,"catalogId":"7de7dad4be6b47b3a7d2fb24b4bb0915"}';
+			
+		
+			
+            var params = {};
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "always";
+            params.allowfullscreen = "true";
+            params.wmode="transparent";
+            var attributes = {};
+            attributes.id = "SobeyPlayer";
+            attributes.name = "SobeyPlayer";
+            attributes.align = "middle";
+            swfobject.embedSWF(
+                "SobeyPlayer.swf"+"?ver="+date, "flashContent", 
+                "100%", "100%",
+              //	"475", "310", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+			
+			//这是用在直播频道上取广告用的
+			function getadData()
+			{
+				return;
+				var ads="[";
+				ads+="{'src':'http://static.vms.sobeycache.com/hzwldst/media/player/dt.jpg','id':'1238','stretch':'1','duration':'1000000000','x':'0','y':'0','opacity':'1','playtime':'0','adtype':'1','interval':'10','cushion':'0','height':'1','width':'1','CanClose':'0','href':'http://www.hzrtv.cn/'}";
+				ads+="]";
+				return ads;
+			}
+   		//	document.getElementById("flashContent").disabled=false;
+        </script>
+    </head>
+    <body>
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+             when JavaScript is disabled.
+        -->
+        <div id="flashContent">
+            <p>
+                To view this page ensure that Adobe Flash Player version 
+                11.4.0 or greater is installed. 
+            </p>
+            <script type="text/javascript"> 
+                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
+                                + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+            </script> 
+			
+			
+        </div>
+        <br>
+      <!--<img id="imgshow"/>-->
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="SobeyPlayer">
+                <param name="movie" value="SobeyPlayer.swf" />
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="#ffffff" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowFullScreen" value="true" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="SobeyPlayer.swf" width="100%" height="100%">
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="allowScriptAccess" value="always" />
+                    <param name="allowFullScreen" value="true" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                    <p> 
+                        Either scripts and active content are not permitted to run or Adobe Flash Player version
+                        11.4.0 or greater is not installed.
+                    </p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </noscript>  
+
+		<script>
+			
+			var isError=false;
+			
+			var testTime = setTimeout(function(){
+			
+				var player = document.getElementById("SobeyPlayer");
+				//player.PlayNew("live://sjid:827", 'p2plives');
+				
+			},15000);
+			
+			//直播回看
+			function getprogramData(id){
+				
+				//正常播放
+				//var data = '{"Name":"让世界听见(重播)","isPlaying":0,"Description":"让世界听见(重播)","Length":"00:10:00","Id":847,"PlayTime":"2016-07-27 10:40:00","starttime":"2016-07-27 10:40:00","endtime":"2016-07-27 10:50:00","time":"0","url":"mr://j:[{\'title\':\'900K\',\'url\':\'http://113.142.30.79/live/7de7dad4be6b47b3a7d2fb24b4bb0915?fmt=h264_500k_flv\'}]","channelid":"7de7dad4be6b47b3a7d2fb24b4bb0915"}';
+				//不能播放
+				var data = '{"Name":"午夜剧场","isPlaying":0,"Description":"午夜剧场","Length":"02:00:00","Id":839,"PlayTime":"2016-07-26 23:45:00","starttime":"2016-07-26 23:45:00","endtime":"2016-07-27 01:45:00","time":"0","url":"mr://j:[{\'title\':\'900K\',\'url\':\'http://113.142.30.79/live/7de7dad4be6b47b3a7d2fb24b4bb0915?fmt=h264_500k_flv\'}]","channelid":"7de7dad4be6b47b3a7d2fb24b4bb0915"}';
+				
+				if(isError)
+				{
+					var data = '{"Name":"中国梦纪录片展播","isPlaying":0,"Description":"中国梦纪录片展播","Length":"00:21:00","Id":872,"PlayTime":"2016-07-28 06:00:00","starttime":"2016-07-28 06:00:00","endtime":"2016-07-28 06:21:00","time":"0","url":"mr://j:[{\'title\':\'900K\',\'url\':\'http://113.142.30.79/live/7de7dad4be6b47b3a7d2fb24b4bb0915?fmt=h264_500k_flv\'}]","channelid":"7de7dad4be6b47b3a7d2fb24b4bb0915"}';
+
+				}
+	
+				 try{
+					 JSON.parse(data)
+				 }catch(e)
+				 {
+					console.log("e: " + e)
+				 }
+							 
+				return ((typeof JSON.parse != 'undefined') ? JSON.parse(data) : JSON.evaluate(data));
+				
+			}
+			
+			//直播回看视频流播放状态 回调
+			function onPlayerStateChanged(options) {
+				isError = true;
+				var state = options.state;
+				var guid = options.guid;
+				//console.log("state="+state)
+				var playUrl = "live://sjid:875";
+				if (state == 'playbackError') 
+				{
+					var player = document.getElementById("SobeyPlayer");
+					player.PlayNew(playUrl, "p2plives");
+				} 
+				else if (state == 'completed') 
+				{
+					var player = document.getElementById("SobeyPlayer");
+				} 
+				else if (state == 'playing') 
+				{
+					window['playList'].data("trying", 0);
+				}
+			}
+			
+			//获取栏目ID
+			function getCatalogId(){
+				return 321;
+			}
+			
+		</script>
+		
+   </body>
+</html>
