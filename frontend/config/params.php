@@ -3,7 +3,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'auth_key' => 'g2fCzDdFxnNBXYUPpz1B', //密钥
 //    'web_url'=>'www.newcollege.dev',
-    'web_url'=>'hqyj.chinamcloud.com',
+    'web_url'=>'www.lms.19apps.com',
     'fogetpwd_route'=>'auth/login',
     'register_route'=>'auth/active',
     'email_common'=>[
@@ -22,7 +22,7 @@ return [
         'effectiveTime'=>60*60*24*2,//邮箱有效时间，48小时
     ],
     'member_common'=>[
-        'picUrl'=>'http://hqyj.chinamcloud.com/mlv/img/banner.png',//图片地址
+        'picUrl'=>'http://www.lms.19apps.com/mlv/img/banner.png',//图片地址
         'allowvobss' => '1',
         'allowregister' => '1',
         'choosemodel' => '1',
