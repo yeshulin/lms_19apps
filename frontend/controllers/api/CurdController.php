@@ -116,7 +116,7 @@ class CurdController extends ApiController
             $queryParams = $this->queryParams;
             $this->rawBody['page']=isset($queryParams['page'])?$queryParams['page']:'';
             $this->rawBody['pageSize']=isset($queryParams['pageSize'])?$queryParams['pageSize']:'';
-            $this->rawBody['order']=isset($queryParams['order'])?json_decode($queryParams['order'],true):'';
+            $this->rawBody['order']=isset($queryParams['order'])?$queryParams['order']:'';
             $this->rawBody['params']=isset($queryParams['params'])?json_decode($queryParams['params'],true):'';
             if(isset($this->rawBody['params']['id'])){
                 $this->rawBody['params']['id']=intval($this->rawBody['params']['id']);

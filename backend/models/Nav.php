@@ -34,7 +34,7 @@ class Nav extends \yii\db\ActiveRecord
     {
         return [
             [['name','url'],'required'],
-            [['order'], 'integer'],
+            [['order'], 'string'],
             [['name'], 'string', 'max' => 128],
             [['url'], 'string', 'max' => 256],
             [['parent'], 'exist', 'skipOnError' => true, 'targetClass' => Nav::className(), 'targetAttribute' => ['parent' => 'id']],

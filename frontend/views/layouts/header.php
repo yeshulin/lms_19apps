@@ -17,7 +17,7 @@
     $this->registerCssFile('@web/mlv/css/head.css');
     $this->registerCssFile('@web/mlv/css/css.css');
     $this->registerCssFile('@web/mlv/css/font-awesome.min.css');
-    $this->registerCssFile('@web/mlv/css/hqy2016.css');
+
     ?>
     <script>
         var userInfo = <?php echo Yii::$app->user->identity?json_encode(\common\helpers\Stringnew::arrayFilterMember(Yii::$app->user->identity->toArray())):"null"?>;
@@ -89,13 +89,15 @@
 
     $(function(){
         var getDataObj = new getData();
-        getDataObj.getNavList(function(result){
+        var order = {"order":"order"};
+
+
+        getDataObj.getNavList("order",function(result){
             var data = $.map(result.data.data,function(n){
                 return n;
             });
             var template = $.templates("#headerNav");
             var htmlOutput = template.render(data);
-            console.log(htmlOutput);
             $("#header-nav").html(htmlOutput);
         });
     })

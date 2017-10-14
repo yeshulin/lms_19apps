@@ -172,10 +172,38 @@ function getData(){
 			callback(result);
 		});
 	};
-	getData.prototype.getNavList = function(callback){
+	getData.prototype.getNavList = function(order,callback){
 		var _url1 = "api/nav/list";
+		var _url2 ="?order="+order;
+		var _url = preSrc + _url1+_url2;
+		$.get(_url,function(result){
+			callback(result);
+		});
+	};
+	getData.prototype.getContentList = function(pagesize,page,callback,where){
+		var _where = '';
+		//console.log(where);
+		if (where != undefined)
+		{
+			_where = where.join("&");
+		}
+
+		var _url1 = "api/content/list?";
+		var _data = ["pagesize="+pagesize,"page="+page];
+		var _url2 = _data.join("&");
+		if (_where != '') {
+			_url2 = _url2 + '&'+_where;
+		}
+		var _url = preSrc + _url1 + _url2;
+		//console.log(_url);
+		$.get(_url,function(result){
+			callback(result);
+		});
+	};
+	getData.prototype.getCatlogList = function(callback){
+		var _url1 = "api/content-catlog/list?order=catid";
 		var _url = preSrc + _url1;
-		$.post(_url,function(result){
+		$.get(_url,function(result){
 			callback(result);
 		});
 	};

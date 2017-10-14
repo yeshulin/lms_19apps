@@ -5,7 +5,7 @@ namespace frontend\controllers\api;
 use Yii;
 use backend\models\Nav;
 use yii\filters\AccessControl;
-use backend\models\NavSearch;
+use backend\models\search\NavSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
