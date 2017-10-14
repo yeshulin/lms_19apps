@@ -1561,7 +1561,8 @@ body .banner-style-nav ul li p a:hover{
 
 .article-list .article-item .content {
     margin-top: 15px;
-    color: #919191
+    color: #919191;
+    margin-left: 10px;
 }
 
 .article-list .media {
@@ -1606,7 +1607,15 @@ body .banner-style-nav ul li p a:hover{
 }
 
 .article-metas .metas-body {
-    padding-left: 60px
+    padding-left: 20px;
+    float: left;
+}
+
+.article-item .pull-right {
+    line-height: 32px;
+    margin-right: 30px;
+    float: right;
+    color: #919191;
 }
 
 .article-metas .metas-body p {
@@ -2026,7 +2035,8 @@ body .banner-style-nav ul li p a:hover{
 }
 
 .es-tabs .tab-header>ul>li.active>a {
-    background-color: #fff
+    background-color: #fff;
+    color: #43bc60;
 }
 
 .es-tabs .tab-body {

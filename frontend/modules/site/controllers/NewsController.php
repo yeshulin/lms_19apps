@@ -13,6 +13,8 @@ use frontend\controllers\WebController;
 use Yii;
 use yii\helpers\Url;
 use yii\httpclient\Client;
+use frontend\models\ContentCatlog;
+use frontend\models\Content;
 
 class NewsController extends WebController
 {
@@ -28,48 +30,24 @@ class NewsController extends WebController
     public function actionIndex()
     {
         $this->layout = "//main_home";
-        $data = [];
-        return $this->render("//news/index", ['list' => $data]);
+        return $this->render("//news/index");
+    }
+
+    public function actionList(){
+        $catid = yii::$app->request->get('catid');
+        $model = ContentCatlog::findOne($catid);
+        $this->layout = "//main_home";
+        return $this->render("//news/list",['model'=>$model]);
     }
 
     public function actionView()
     {
-        $type = Yii::$app->request->get('type');
-        $allow = ['class', 'school', 'platform'];
-        if (!in_array($type, $allow)) {
-            echo "错误的类型";
-            return;
-        }
-
-        $client = new Client([
-            'transport' => 'yii\httpclient\CurlTransport',
-        ]);
-        $id = Yii::$app->request->get('id');
-        $parArr = [
-            'method' => 'live',
-            'type' => 'list',
-        ];
-        $response = $client->createRequest()
-            ->setMethod('post')
-            ->setUrl($this->goodurl)
-            ->setData($parArr)
-            ->send();
-        if ($response->isOk) {
-            if ($response->data['code'] == "0000") {
-                $data = $response->data['data'];
-                foreach ($data['data'] as $key => $value) {
-                    if($value['live']['type'] == $type){
-                        $request[] = $value;
-                    }
-                }
-            } else {
-                echo $response->data['error'];
-            }
-        }
-
-        //var_dump($request);
-
+//        $catid = yii::$app->request->get('catid');
+//        $catlog = ContentCatlog::findOne($catid);
+//        var_dump($catlog);exit;
+        $id = yii::$app->request->get('id');
+        $model = Content::findOne($id);
         $this->layout = "//main_home";
-        return $this->render("//live/view_" . $type, ['list' => $request]);
+        return $this->render("//news/view",['model'=>$model]);
     }
 }

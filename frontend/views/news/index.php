@@ -195,6 +195,7 @@ $this->registerJsFile('@web/mlv/js/Swiper-3.3.1/dist/js/swiper.jquery.min.js');
 						<div class="es-tabs article-list-header">
 							<div class="tab-header">
 								<script id="catlog-list-template" type="text/x-jsrender">
+
 									<li class=""><a href="{{:href}}">{{:catname}}</a></li>
 								</script>
 								<ul class="clearfix" id="catlog-list">
@@ -205,22 +206,21 @@ $this->registerJsFile('@web/mlv/js/Swiper-3.3.1/dist/js/swiper.jquery.min.js');
 						<script id="article-list-template" type="text/x-jsrender">
 							<article class="article-item">
 								<div class="article-metas clearfix">
-									<div class="pull-left">
-										<div class="date">
-											<div class="day">27</div>
-											<div class="month">09月</div>
-										</div>
-									</div>
-									<div class="metas-body">
+								<div class="metas-body">
 
 										<h2 class="title">
 											<a class="link-dark" href="{{:href}}">{{:title}}</a>
 										</h2>
 									</div>
+
+
 								</div>
 								<div class="content">
 									{{:description}}
 								</div>
+								<div class="pull-right">
+											发布时间：{{:created_at}}
+									</div>
 							</article>
 						</script>
 						<div class="article-list" id="article-list">
@@ -314,7 +314,8 @@ function doNews(target){
 			return {
 				title:n.title,
 				description:n.description,
-				href: '<?= Url::to(['/site/news/view', 'id'=>''])?>'+n.id
+				href: '<?= Url::to(['/site/news/view', 'id'=>''])?>'+n.id,
+				created_at: formatTime(n.created_at)
 			};
 		});
 		var template = $.templates("#article-list-template");
@@ -341,7 +342,7 @@ function doCatlog(target){
 	$(function(){
 		doNews($("#article-list"));
 		doCatlog($("#catlog-list"));
-		$.get('/api/advertisement/get?id=18', function (result) {
+		$.get('/api/advertisement/get?id=26', function (result) {
 			//console.log(result);
 			if (result.data !== undefined) {
 				$.each(result.data.content, function (k, v) {
@@ -363,23 +364,6 @@ function doCatlog(target){
 
 			}
 		})
-		$("body").on("click",".map-info",function(){
-					var content = urlPre + "/mlv/map/map" + $(this).data("map") + ".html";
-					$("#iframe").attr("src",content);
-					$(".map-mask").fadeIn();
-				}
-			);
-			$(".map-mask").on("click",function(){
-					$(".map-mask").fadeOut(
-						function(){
-							$("#iframe").attr("src","");
-						}
-					);
-				}
-			);
-			$(".map-content").on("click",function(){
-					return false;
-				}
-			);
+
 	})
 </script>
