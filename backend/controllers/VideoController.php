@@ -251,4 +251,10 @@ class VideoController extends AdminController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    /*
+     * video upload
+     * */
+    public function actionUpload(){
+        return $this->render("video_upload");
+    }
 }

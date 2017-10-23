@@ -20,7 +20,7 @@ class ContentSearch extends Content
         return [
             [['id', 'catid', 'order', 'status', 'created_at', 'updated_at', 'videoPath'], 'integer'],
             [['content'],'string'],
-            [['title', 'thumb', 'keywords', 'description', 'url', 'username'], 'safe'],
+            [['catid','title', 'thumb', 'keywords', 'description', 'url', 'username'], 'safe'],
         ];
     }
 

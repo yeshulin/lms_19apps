@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\ContentCatlog;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Content */
@@ -13,7 +15,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
 <!--    --><?//= $form->field($model, 'catid')->textInput() ?>
-
+    <?= $form->field($model,'catid')->dropDownList(ArrayHelper::map(ContentCatlog::find()->asArray()->all(),'catid', 'catname'));?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'thumb')->hiddenInput(['maxlength' => true]) ?>
     <?=@Html::img($model->toArray(['thumb'])['thumb'],['id'=>"img_thumb","width"=>"150px","height"=>"150px","title"=>"点击更换图片","style"=>"cursor:pointer"])?>
