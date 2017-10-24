@@ -11,7 +11,7 @@ return [
     'cache_path' => __DIR__.'/../../frontend/cache/',//文件缓存路径
     'upload_path' =>  __DIR__.'/../../frontend/web/uploads/',//上传路径
     'web_upload_path' => 'http://www.lms.19apps.com/uploads/',//文件访问路径
-'upload_file_size' => '5', //Î¼þÉ´«´óµ¥λ M
+	'upload_file_size' => '5', //Î¼þÉ´«´óµ¥λ M
 	'upload_exts' => array( //上传文件扩展
 			'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
 			'flash' => array('swf', 'flv'),
@@ -53,4 +53,12 @@ return [
 			'seller_id' => '2088411622299002',
 		],
 	],
+	'oss'=>[
+		'accessid'=>'LTAIr9CFSL4I44et',
+		'host'=>'http://19apps.oss-cn-shanghai.aliyuncs.com',
+		'key'=>'mFZ38Xzz3hqjQ2upcVNabFsBcZPZ97',
+		'callbakUrl'=>'http://www.lms.19apps.com/api/oss/call-back',
+		'expire'=>'360',
+		'dir'=>'video/'
+	]
 ];

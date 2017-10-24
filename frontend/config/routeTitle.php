@@ -2,6 +2,7 @@
 return [
    "routeTile"=>[
       'user'=>"个人中心",
+       "site/site"=>"首页",
        "site/course"=>"在线学习",
        "site/course/list"=>"在线学习",
        "site/course/play"=>"课程播放",
