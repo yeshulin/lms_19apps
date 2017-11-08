@@ -1,5 +1,6 @@
 {
     "require": {
-        "yiisoft/yii2-httpclient": "2.0.0.1"
+        "yiisoft/yii2-httpclient": "2.0.0.1",
+        "aliyuncs/oss-sdk-php": "^2.2"
     }
 }

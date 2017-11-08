@@ -15,6 +15,7 @@ class ComposerStaticInitff845f4142034eac1802a644d1f392a9
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -27,6 +28,10 @@ class ComposerStaticInitff845f4142034eac1802a644d1f392a9
         array (
             'cebe\\markdown\\' => 14,
         ),
+        'O' => 
+        array (
+            'OSS\\' => 4,
+        ),
         'F' => 
         array (
             'Faker\\' => 6,
@@ -37,6 +42,10 @@ class ComposerStaticInitff845f4142034eac1802a644d1f392a9
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\httpclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-httpclient',
         ),
         'yii\\gii\\' => 
         array (
@@ -69,6 +78,10 @@ class ComposerStaticInitff845f4142034eac1802a644d1f392a9
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'OSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
         ),
         'Faker\\' => 
         array (
