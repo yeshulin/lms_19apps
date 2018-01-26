@@ -82,10 +82,10 @@ class OssController extends ApiController
     /*
      * oss 请求回调
      * */
-    public function actionCallback(){
+    public function actionCallBack(){
         // 1.获取OSS的签名header和公钥url header
-        $authorizationBase64 = "";
-        $pubKeyUrlBase64 = "";
+        $authorizationBase64 = "333";
+        $pubKeyUrlBase64 = "333";
         /*
          * 注意：如果要使用HTTP_AUTHORIZATION头，你需要先在apache或者nginx中设置rewrite，以apache为例，修改
          * 配置文件/etc/httpd/conf/httpd.conf(以你的apache安装路径为准)，在DirectoryIndex index.php这行下面增加以下两行
