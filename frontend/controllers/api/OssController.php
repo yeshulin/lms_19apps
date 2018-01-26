@@ -7,7 +7,9 @@
  */
 namespace frontend\controllers\api;
 use Yii;
+use yii\httpclient\Client;
 use DateTime;
+
 
 /**
  * 用户接口类，用于用户的更新，查询，添加
@@ -84,8 +86,8 @@ class OssController extends ApiController
      * */
     public function actionCallBack(){
         // 1.获取OSS的签名header和公钥url header
-        $authorizationBase64 = "333";
-        $pubKeyUrlBase64 = "333";
+        $authorizationBase64 = "";
+        $pubKeyUrlBase64 = "";
         /*
          * 注意：如果要使用HTTP_AUTHORIZATION头，你需要先在apache或者nginx中设置rewrite，以apache为例，修改
          * 配置文件/etc/httpd/conf/httpd.conf(以你的apache安装路径为准)，在DirectoryIndex index.php这行下面增加以下两行
@@ -145,6 +147,7 @@ class OssController extends ApiController
         {
             header("Content-Type: application/json");
             $data = array("Status"=>"Ok");
+            echo json_encode(yii::$app->request->get)
             echo json_encode($data);
         }
         else
@@ -154,7 +157,26 @@ class OssController extends ApiController
         }
 
     }
-
+    /*
+     * 获取
+     * */
+    public function actionQuerymedia(){
+        $params = array(
+            "Format"=>"json",
+            "Version"=>"2014-06-18",
+            "SignatureMethod"=>"Hmac-SHA1",
+            "SignatureNonce"
+        )
+            "Format=json
+    &Version=2014-06-18
+    &Signature=vpEEL0zFHfxXYzSFV0n7%2FZiFL9o%3D
+    &SignatureMethod=Hmac-SHA1
+    &SignatureNonce=9166ab59-f445-4005-911d-664c1570df0f
+    &SignatureVersion=1.0
+    &Action=SubmitJobs
+    &AccessKeyId=tkHh5O7431CgWayx
+    &Timestamp=2014-07-29T09%3A22%3A32Z"
+    }
     function gmt_iso8601($time) {
         $dtStr = date("c", $time);
         $mydatetime = new \DateTime($dtStr);
