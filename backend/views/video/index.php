@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 <!--        --><?//= Html::a('创建视频', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::button('同步VMS视频', ['class' => 'btn btn-success', 'id'=>'sync-vms']) ?>
+        <?= Html::button('同步视频', ['class' => 'btn btn-success', 'id'=>'sync-vms']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -44,21 +44,21 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'userid',
             // 'usertype',
 //             'type',
-            [
-                "attribute"=>"type",
-                "value"=>function($model){
-                    return $model::dropDown("type",$model->type);
-                },
-                'filter'=>$searchModel::dropDown('type'),
-            ],
+//            [
+//                "attribute"=>"type",
+//                "value"=>function($model){
+//                    return $model::dropDown("type",$model->type);
+//                },
+//                //'filter'=>$searchModel::dropDown('type'),
+//            ],
 //             'status',
-            [
-                "attribute"=>"status",
-                "value"=>function($model){
-                    return $model::dropDown("status",$model->status);
-                },
-                "filter"=>$searchModel::dropDown("status")
-            ],
+//            [
+//                "attribute"=>"status",
+//                "value"=>function($model){
+//                    return $model::dropDown("status",$model->status);
+//                },
+//              //  "filter"=>$searchModel::dropDown("status")
+//            ],
             // 'order',
 
             ['class' => 'yii\grid\ActionColumn'],
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $("#sync-vms").on("click", function(){
         layer.open({
             type: 2,
-            title: \'ｖｍｓ视频同步\',
+            title: \'视频同步\',
             shadeClose: true,
             shade: 0.8,
 //            area: [\'50% \', \'60% \'],
