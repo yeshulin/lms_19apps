@@ -147,7 +147,7 @@ class OssController extends ApiController
         {
             header("Content-Type: application/json");
             $data = array("Status"=>"Ok");
-            echo json_encode(yii::$app->request->get)
+
             echo json_encode($data);
         }
         else
@@ -161,21 +161,65 @@ class OssController extends ApiController
      * 获取
      * */
     public function actionQuerymedia(){
+        $url = "http://mts.cn-shanghai.aliyuncs.com/";
+        $fileurls = yii::$app->request->get("fileurls");
+        $SignatureNonce = $this->generate_str();
+        $Timestamp = $this->gmt_iso8601(time());
+        $now = time();
+        $expire = $this->expire; //设置该policy超时时间是10s. 即这个policy过了这个有效时间，将不能访问
+        $end = $now + $expire;
+        $expiration = $this->gmt_iso8601($end);
+
+        //最大文件大小.用户可以自己设置
+        $condition = array(0=>'content-length-range', 1=>0, 2=>1048576000);
+        $conditions[] = $condition;
+
+        //表示用户上传的数据,必须是以$dir开始, 不然上传会失败,这一步不是必须项,只是为了安全起见,防止用户通过policy上传到别人的目录
+        $start = array(0=>'starts-with', 1=>'$key', 2=>$this->dir);
+        $conditions[] = $start;
+
+
+        $arr = array('expiration'=>$expiration,'conditions'=>$conditions);
+        //echo json_encode($arr);
+        //return;
+        $policy = json_encode($arr);
+        $base64_policy = base64_encode($policy);
+        $string_to_sign = $base64_policy;
+        echo $string_to_sign;
+        echo "<br>";
+        echo $this->key;
+        exit;
+        $signature = base64_encode(hash_hmac('sha1', $string_to_sign, $this->key, true));
         $params = array(
             "Format"=>"json",
             "Version"=>"2014-06-18",
             "SignatureMethod"=>"Hmac-SHA1",
-            "SignatureNonce"
-        )
-            "Format=json
-    &Version=2014-06-18
-    &Signature=vpEEL0zFHfxXYzSFV0n7%2FZiFL9o%3D
-    &SignatureMethod=Hmac-SHA1
-    &SignatureNonce=9166ab59-f445-4005-911d-664c1570df0f
-    &SignatureVersion=1.0
-    &Action=SubmitJobs
-    &AccessKeyId=tkHh5O7431CgWayx
-    &Timestamp=2014-07-29T09%3A22%3A32Z"
+            "SignatureNonce"=>$SignatureNonce,
+            "SignatureVersion"=>"1.0",
+            "Signature"=>$signature,
+            "AccessKeyId"=>$this->accessid,
+           // "Timestamp"=>$Timestamp,
+            "Action"=>"QueryMediaListByURL",
+            "FileURLs"=>$fileurls,
+            "IncludePlayList"=>"true",
+            "IncludeMediaInfo"=>"true"
+        );
+    
+        var_dump(http_build_query($params));
+        var_dump($url);exit;
+        $client = new Client();
+        $response = $client->createRequest()
+            ->setMethod("GET")
+            ->setData($params)
+            ->setUrl($url)
+            ->send();
+         if ($response->isOk) {
+               echo json_encode($response->data);
+        }else{
+            echo 'none!';
+        }      
+
+           
     }
     function gmt_iso8601($time) {
         $dtStr = date("c", $time);
@@ -185,6 +229,15 @@ class OssController extends ApiController
         $expiration = substr($expiration, 0, $pos);
         return $expiration."Z";
     }
+    function generate_str( $length = 20 ) { 
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_ []{}<>~`+=,.;:/?|"; 
+        $str = ""; 
+        for ( $i = 0; $i < $length; $i++ ) 
+        { 
+            $str .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
+        } 
+        return $str; 
+    } 
 
 
 
