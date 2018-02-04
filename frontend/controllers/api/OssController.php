@@ -157,7 +157,7 @@ class OssController extends ApiController
             $video->order = 0;
             $id = $video->insert(); 
             header("Content-Type: application/json");
-            $data = array("Status"=>"Ok","data"=>array("id"=>$id,"videoname"=>$video->videoname));
+            $data = array("Status"=>"Ok","data"=>array("videoname"=>$video->videoname,"video"=>$video));
             echo json_encode($data);
         }
         else
