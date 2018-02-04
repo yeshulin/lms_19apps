@@ -9,7 +9,7 @@ namespace frontend\controllers\api;
 use Yii;
 use yii\httpclient\Client;
 use DateTime;
-
+use common\models\Video;
 
 /**
  * 用户接口类，用于用户的更新，查询，添加
@@ -145,6 +145,17 @@ class OssController extends ApiController
         $ok = openssl_verify($authStr, $authorization, $pubKey, OPENSSL_ALGO_MD5);
         if ($ok == 1)
         {
+            $video = new Video();
+            $video->videoname = $this->retrieve(yii::$app->request->post("filename"));
+            $video->vmsid = yii:$app->request->post("filename");
+            $video->createtime = time();
+            $video->updatetime = time();
+            $video->userid = 0;
+            $video->usertype = 0;
+            $video->type = 11;
+            $video->status = 0;
+            $video->order = 0;
+            $id = $video->save(); 
             header("Content-Type: application/json");
             $data = array("Status"=>"Ok");
             yii::info("ok",$body);exit;
@@ -237,6 +248,16 @@ class OssController extends ApiController
             $str .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
         } 
         return $str; 
+    } 
+    /**
+     * [retrieve 获取文件名]
+     * @param  [type] $url [string 路径]
+     * @return [type]      [string 文件名]
+     */
+    function retrieve($url) 
+    { 
+        preg_match('/\/([^\/]+\.[a-z]+)[^\/]*$/',$url,$match); 
+        return $match[1]; 
     } 
 
 
