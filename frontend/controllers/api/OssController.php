@@ -146,8 +146,8 @@ class OssController extends ApiController
         if ($ok == 1)
         {
             $video = new Video();
-            $video->videoname = yii::$app->request->post("filename");
-            $video->vmsid = yii::$app->request->post("filename");
+            $video->videoname = "34343";
+            $video->vmsid = "3443";
             $video->create_at = time();
             $video->update_at = time();
             $video->userid = 0;
