@@ -171,8 +171,6 @@ class OssController extends ApiController
      * 获取
      * */
     public function actionQuerymedia(){
-
-            echo 1;exit;
         $url = "http://mts.cn-shanghai.aliyuncs.com/";
         $fileurls = yii::$app->request->get("fileurls");
         $SignatureNonce = $this->generate_str();
