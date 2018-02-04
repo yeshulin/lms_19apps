@@ -146,7 +146,7 @@ class OssController extends ApiController
         if ($ok == 1)
         {
             $video = new Video();
-            $video->videoname = $this->retrieve(yii::$app->request->post("filename"));
+            $video->videoname = yii::$app->request->post("filename");
             $video->vmsid = yii::$app->request->post("filename");
             $video->create_at = time();
             $video->update_at = time();
@@ -157,8 +157,7 @@ class OssController extends ApiController
             $video->order = 0;
             $id = $video->insert(); 
             header("Content-Type: application/json");
-            $data = array("Status"=>"Ok");
-            yii::info("info",$video);exit;
+            $data = array("Status"=>"Ok","data"=>array("id"=>$id,"videoname"=>$video->videoname));
             echo json_encode($data);
         }
         else
@@ -172,6 +171,8 @@ class OssController extends ApiController
      * 获取
      * */
     public function actionQuerymedia(){
+
+            echo 1;exit;
         $url = "http://mts.cn-shanghai.aliyuncs.com/";
         $fileurls = yii::$app->request->get("fileurls");
         $SignatureNonce = $this->generate_str();
