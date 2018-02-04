@@ -146,7 +146,7 @@ class OssController extends ApiController
         if ($ok == 1)
         {
             $video = new Video();
-            $video->videoname = $this->retrieve(yii::$app->request->post("filename"));
+            $video->videoname = basename(yii::$app->request->post("filename"));
             $video->vmsid = yii::$app->request->post("filename");
             $video->create_at = time();
             $video->update_at = time();
@@ -253,11 +253,6 @@ class OssController extends ApiController
      * @param  [type] $url [string 路径]
      * @return [type]      [string 文件名]
      */
-    function retrieve($url) 
-    { 
-        preg_match('/\/([^\/]+\.[a-z]+)[^\/]*$/',$url,$match); 
-        return $match[1]; 
-    } 
 
 
 
