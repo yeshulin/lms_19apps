@@ -146,8 +146,8 @@ class OssController extends ApiController
         if ($ok == 1)
         {
             $video = new Video();
-            $video->videoname = "34343";
-            $video->vmsid = "3443";
+            $video->videoname = $this->retrieve(yii::$app->request->post("filename"));
+            $video->vmsid = yii::$app->request->post("filename");
             $video->create_at = time();
             $video->update_at = time();
             $video->userid = 0;
@@ -157,7 +157,7 @@ class OssController extends ApiController
             $video->order = 0;
             $id = $video->insert(); 
             header("Content-Type: application/json");
-            $data = array("Status"=>"Ok","data"=>array("videoname"=>$video->videoname,"video"=>$video));
+            $data = array("Status"=>"Ok","data"=>array("videoname"=>$video->videoname,"id"=>$id));
             echo json_encode($data);
         }
         else
