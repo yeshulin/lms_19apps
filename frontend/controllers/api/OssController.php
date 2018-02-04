@@ -147,7 +147,7 @@ class OssController extends ApiController
         {
             header("Content-Type: application/json");
             $data = array("Status"=>"Ok");
-
+            yii::info("ok",$body);exit;
             echo json_encode($data);
         }
         else
