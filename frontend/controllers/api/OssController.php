@@ -158,7 +158,7 @@ class OssController extends ApiController
             $id = $video->save(); 
             header("Content-Type: application/json");
             $data = array("Status"=>"Ok");
-            yii::info("ok",$video);exit;
+            yii::info("info",$video);exit;
             echo json_encode($data);
         }
         else
