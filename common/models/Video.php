@@ -45,7 +45,7 @@ class Video extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['vmsid', 'videoname', 'create_at', 'update_at'], 'required'],
+            [['vmsid','videoname','create_at','update_at'], 'required'],
             [['create_at', 'update_at'], 'integer'],
             [['vmsid', 'videoname'], 'string', 'max' => 255],
         ];
