@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 <!--        --><?//= Html::a('创建视频', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::button('同步视频', ['class' => 'btn btn-success', 'id'=>'sync-vms']) ?>
+        <?= Html::button('上传视频', ['class' => 'btn btn-success', 'id'=>'sync-vms']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -68,11 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
     $("#sync-vms").on("click", function(){
         layer.open({
             type: 2,
-            title: \'视频同步\',
+            title: \'视频上传\',
             shadeClose: true,
             shade: 0.8,
-//            area: [\'50% \', \'60% \'],
-            content: \''.Url::to(['video/sync-vms-video']).'\' //iframe的url
+           area: [\'50% \', \'60% \'],
+            content: \''.Url::to(['oss/upload']).'\' //iframe的url
         });
     })
     ', \yii\web\View::POS_END)?>
