@@ -14,6 +14,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $mobile;
+    public $top_userid;
     static public $rules=[
         ['username', 'trim'],
         ['username', 'required'],
@@ -35,6 +36,7 @@ class SignupForm extends Model
 
         ['password', 'required'],
         ['password', 'string', 'min' => 6,'max'=>16,'message'=>"密码应为6-16个字符"],
+        ['top_userid','trim']
     ];
 
     /**
@@ -75,6 +77,7 @@ class SignupForm extends Model
         $user->regStatus = $regStatus;
         $user->generateAuthKey();
         $user->setPassword($this->password);
+        $user->top_userid = $this->top_userid;
         if($user->save()){
             $info['data']=$user;
         }else{

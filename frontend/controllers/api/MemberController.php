@@ -30,14 +30,14 @@ class MemberController extends ApiController
     //允许返回的字段
     public $returnField = [
         'id', 'username', 'usertype', 'email', 'nickname', 'mobile', 'sex', 'address', 'zhuanye', 'yuanxi', 'banji', 'created_at', 'linkage', 'postcode',
-        'lastdate', 'loginnum', 'introduce', 'updated_at', 'regStatus'
+        'lastdate', 'loginnum', 'introduce', 'updated_at', 'regStatus','top_userid'
     ];
     //允许更新的字段
     public $updateField = [
         'nickname', 'sex', 'address', 'zhuanye', 'yuanxi', 'banji', 'introduce', 'email', 'mobile', 'linkage', 'postcode',
     ];
     public $createFiled = [
-        'username', 'email', 'password', 'mobile'
+        'username', 'email', 'password', 'mobile','top_userid'
     ];
     public $vbossupdateField = [
         'loginname', 'username', 'email', 'password', 'mobile'
@@ -49,7 +49,7 @@ class MemberController extends ApiController
 //        'hotmail.com'=>'',
 //        'yahoo.com'=>'',
 //        'sina.com'=>'',
-        'huaqiyun.com' => '',
+        'guangweidong.com' => '',
     ];
 
     /*
@@ -406,61 +406,9 @@ class MemberController extends ApiController
         Yii::info("用户注册-start", "apiLog");
         if (Yii::$app->request->isPost) {
             if (isset($this->rawBody['SignupForm']['loginname'])) $this->rawBody['SignupForm']['username'] = $this->rawBody['SignupForm']['loginname'];
-            $goLogin = 0;
-            if (Yii::$app->params['allowvboss'] == 1) { //开启vboss同步登录
-//                var_dump($datavboss);exit;
-                Yii::info("用户注册:vboss注册", "apiLog");
-                $checkError = 0;
-                $regStatus = 0;
-                $model = new SignupForm();
-                if (isset($this->rawBody['type'])) {
-                    if ($this->rawBody['type'] == "mobile") {//电话号码注册，生成邮箱
-                        Yii::info("用户注册:电话号码注册，生成邮箱", "apiLog");
-                        do {
-                            $this->rawBody['SignupForm']['email'] = $this->rawBody['SignupForm']['mobile'] . "@" . array_rand($this->randEmail);
-                        } while (!$this->validate(["type" => "email", "email" => $this->rawBody['SignupForm']['email']]));
-                        $regStatus = 1;
-                    } else if ($this->rawBody['type'] == "email") {//邮箱注册，生成电话号码
-                        Yii::info("用户注册:邮箱注册，生成电话号码", "apiLog");
-                        do {
-//                            $this->rawBody['SignupForm']['mobile'] = "1" . array_rand([3 => '', 5 => '', 7 => '', 8 => '']) . mt_rand(100000000, 999999999);
-                            $this->rawBody['SignupForm']['mobile'] = "123" . mt_rand(10000000, 99999999);
-                            $model->delRules('mobile', 'match');
-                        } while (!$this->validate(["type" => "mobile", "mobile" => $this->rawBody['SignupForm']['mobile']]));
-                        $regStatus = 3;
-                    }
-                }
-                Yii::info("用户注册:" . print_r($this->rawBody, true), "apiLog");
-                if ($model->load($this->rawBody)) {
-                    if (!$model->validate()) {
-                        Yii::info("用户注册:注册校验错误." . print_r($model->getErrors(), true), "apiLog");
-                        $this->setReturn("0003", "failed", "", array_pop(array_pop($model->getErrors())));
-                        $checkError = 1;
-                    }
-                }
-
-                $datavboss = $this->rawBody['SignupForm'];
-                $data['loginname'] = $datavboss['loginname'];
-                $data['email'] = $datavboss['email'];
-                $data['mobile'] = $datavboss['mobile'];
-                $data['password'] = $datavboss['password'];
-                $data['source'] = 'sobeycollege';
-                $data['ip'] = Yii::$app->request->getUserIP();
-                if (!$checkError) {
-                    Yii::info("用户注册:Vboss注册数据." . print_r($data, true), "apiLog");
-                    $vbossinfo = $this->vboss->vboss_register($data);
-                    Yii::info("用户注册:vboss注册返回结果." . print_r($vbossinfo, true), "apiLog");
-                    if (isset($vbossinfo['code']) && $vbossinfo['code'] == 0) {
-                        $goLogin = 1;
-                    }
-                }
-                //vboss注册失败,本地停止注册
-            } else {
-                Yii::info("用户注册:Vboss同步未开启", "apiLog");
-//               $this->setReturn("0001","failed",'',"系统暂时关闭注册功能,请耐心等候");
-            }
+            $goLogin = 1;
             #####
-            if (0) {
+            if ($goLogin) {
                 $model = new SignupForm();
                 $regStatus = 0;
                 if (isset($this->rawBody['type'])) {
@@ -476,6 +424,9 @@ class MemberController extends ApiController
                             $model->delRules('mobile', 'match');
                         } while (!$this->validate(["type" => "mobile", "mobile" => $this->rawBody['SignupForm']['mobile']]));
                         $regStatus = 3;
+                    }
+                    if($this->rawBody['SignupForm']['top_userid']==''){
+                        $this->rawBody['SignupForm']['top_userid']=0;
                     }
                 }
                 if ($model->load($this->rawBody)) {
@@ -510,6 +461,7 @@ class MemberController extends ApiController
                         $model->from = Yii::$app->session->get('from');
                         Yii::$app->session->set('from', '');
                     }
+
                     $user = $model->signup($regStatus);
                     if ($user['code'] != "0000") {
                         Yii::info("用户注册:注册失败", "apiLog");
@@ -529,10 +481,6 @@ class MemberController extends ApiController
                     Yii::info("用户注册:密码字段为空", "apiLog");
                     $this->setReturn("0003", "failed", "", "密码不能为空");
                 }
-            } else {//vboss注册出错
-                Yii::info("用户注册:Vboss注册出错", "apiLog");
-//                if (!$checkError) $this->setReturn("0003", "failed", '', isset($vbossinfo['msg']) ? $vbossinfo['msg'] : "系统繁忙,请稍后重试");;
-                $this->setReturn("0003", "failed", '', isset($vbossinfo['msg']) ? $vbossinfo['msg'] : "系统繁忙,请稍后重试");;
             }
         } else {
             Yii::info("用户注册：非Post请求", "apiLog");
