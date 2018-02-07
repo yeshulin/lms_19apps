@@ -58,7 +58,7 @@ class Video extends \yii\db\ActiveRecord
     {
         return [
             'videoid' => 'Videoid',
-            'vmsid' => '视频在vms中的id',
+            'vmsid' => '视频链接',
             'videoname' => '视频名称',
             'time' => '时长',
             'thumb' => '缩略图',

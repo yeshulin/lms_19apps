@@ -174,49 +174,13 @@ class OssController extends ApiController
         $url = "http://mts.cn-shanghai.aliyuncs.com/";
         $fileurls = yii::$app->request->get("fileurls");
         $SignatureNonce = $this->generate_str();
-        $Timestamp = $this->gmt_iso8601(time());
-        $now = time();
-        $expire = $this->expire; //设置该policy超时时间是10s. 即这个policy过了这个有效时间，将不能访问
-        $end = $now + $expire;
-        $expiration = $this->gmt_iso8601($end);
-
-        //最大文件大小.用户可以自己设置
-        $condition = array(0=>'content-length-range', 1=>0, 2=>1048576000);
-        $conditions[] = $condition;
-
-        //表示用户上传的数据,必须是以$dir开始, 不然上传会失败,这一步不是必须项,只是为了安全起见,防止用户通过policy上传到别人的目录
-        $start = array(0=>'starts-with', 1=>'$key', 2=>$this->dir);
-        $conditions[] = $start;
-
-
-        $arr = array('expiration'=>$expiration,'conditions'=>$conditions);
-        //echo json_encode($arr);
-        //return;
-        $policy = json_encode($arr);
-        $base64_policy = base64_encode($policy);
-        $string_to_sign = $base64_policy;
-        echo $string_to_sign;
-        echo "<br>";
-        echo $this->key;
-        exit;
-        $signature = base64_encode(hash_hmac('sha1', $string_to_sign, $this->key, true));
-        $params = array(
-            "Format"=>"json",
-            "Version"=>"2014-06-18",
-            "SignatureMethod"=>"Hmac-SHA1",
-            "SignatureNonce"=>$SignatureNonce,
-            "SignatureVersion"=>"1.0",
-            "Signature"=>$signature,
-            "AccessKeyId"=>$this->accessid,
-           // "Timestamp"=>$Timestamp,
+        $actionParams = array(
             "Action"=>"QueryMediaListByURL",
-            "FileURLs"=>$fileurls,
+            "FileURLs"=>$this->host."/".$fileurls,
             "IncludePlayList"=>"true",
-            "IncludeMediaInfo"=>"true"
+            "IncludeMediaInfo"=>"true",
         );
-    
-        var_dump(http_build_query($params));
-        var_dump($url);exit;
+        $params = $this->generateSystemParams($actionParams,$SignatureNonce);
         $client = new Client();
         $response = $client->createRequest()
             ->setMethod("GET")
@@ -247,12 +211,36 @@ class OssController extends ApiController
             $str .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
         } 
         return $str; 
-    } 
+    }
     /**
-     * [retrieve 获取文件名]
-     * @param  [type] $url [string 路径]
-     * @return [type]      [string 文件名]
+     * 构建请求参数
+     *
+     * @param array $actionParams
+     * @return array
      */
+    private function generateSystemParams($actionParams,$SignatureNonce)
+    {
+        $systemParams = [];
+        $systemParams['Format'] = "JSON";
+        $systemParams['Version'] = "2014-06-18";
+        $systemParams['AccessKeyId'] = $this->accessid;
+        $systemParams['SignatureMethod'] = "Hmac-SHA1";
+        $systemParams['TimeStamp'] = gmdate('Y-m-d\TH:i:s\Z');
+        $systemParams['SignatureVersion'] = "1.0";
+        $systemParams['SignatureNonce'] = $SignatureNonce;
+        $params = array_merge($systemParams, $actionParams);
+        $buildStr = '';
+        ksort($params);
+        foreach ($params as $key=>$value) {
+            $buildStr .= str_replace(['+','*','%7E'],['%20','%2A','~'], urlencode($key)).'='.str_replace(['+','*','%7E'],['%20','%2A','~'], urlencode($value)).'&';
+        }
+        $buildStr = substr($buildStr,0,-1);
+        $buildStr = str_replace(['+','*','%7E'],['%20','%2A','~'], urlencode($buildStr));
+        $stringToSign = 'GET'.'&'.'%2F'.'&'.$buildStr;
+        $signature = base64_encode(hash_hmac('sha1', $stringToSign, $this->key.'&', true));
+        $params['Signature'] = $signature;
+        return $params;
+    }
 
 
 

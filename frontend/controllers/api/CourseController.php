@@ -17,6 +17,7 @@ use common\models\CourseKnows;
 use common\models\CourseSections;
 use frontend\models\Mycourse;
 use frontend\models\Myxuecourse;
+use yii\httpclient\Client;
 
 class CourseController extends ApiController
 {
@@ -127,13 +128,25 @@ class CourseController extends ApiController
                         $CourseModel->learnnumber = ($CourseModel->learnnumber)+1;
                         $CourseModel->_save();
                     }
+                    $client = new Client();
+                    $parArr = [
+                        'fileurls'=>$info->items->vmsid,
+                    ];
+                    $url = yii::$app->params['api']['college']."/api/oss/querymedia";
+                    $response = $client->createRequest()
+                        ->setMethod('GET')
+                        ->setUrl($url)
+                        ->setData($parArr)
+                        ->send();
+                    if($response->isOk){
+                        return self::setReturn('0000', 'success', [
+                            'courseid'=>$SectionModel->courseid,"play"=>$response->data
 
-                    $Vms = new \common\components\Vms();
-                    $Play = $Vms->vmsVideoPlay($info->items->vmsid);
-                    return self::setReturn('0000', 'success', [
-                        'courseid'=>$SectionModel->courseid,
-                        'play'=> $Play,
-                    ]);
+                        ]);
+                    }
+//                    $Vms = new \common\components\Vms();
+//                    $Play = $Vms->vmsVideoPlay($info->items->vmsid);
+
                 }
                 else {
                     return self::setReturn('0002', 'failed', '', $retuanPlayStatus[$code]);
