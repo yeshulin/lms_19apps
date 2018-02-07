@@ -246,7 +246,7 @@ class MemberController extends ApiController
                 }
                 $userInfo = $this->objarray_to_array($model->_user);
 //                $userInfo = $this->objarray_to_array(Member::findByUsername($model->username));
-                $returninfo[$userInfo['id']] = $this->filterUserinfo($userInfo);
+                $returninfo['userinfo'] = $this->filterUserinfo($userInfo);
                 if ($this->loginType == 1) {
                     $returninfo['cookie'] = $_COOKIE;
                     $this->setReturn('', '', $returninfo);
@@ -364,7 +364,7 @@ class MemberController extends ApiController
     {
         $this->guestQuit();
         $user = $this->filterUserinfo($this->objarray_to_array($this->_user));
-        $this->setReturn('', '', [$user['id'] => $user]);
+        $this->setReturn('', '', ['userinfo' => $user]);
     }
 
     public function actionLogout()
@@ -474,8 +474,10 @@ class MemberController extends ApiController
                             $sms = new SmsController();
                             $sms->actionEmail("reg", $this->rawBody['SignupForm']['email']);
                         }
+
                         $user = $this->filterUserinfo($this->objarray_to_array($user['data']));
-                        $this->setReturn("", "", [$user['id'] => $user]);
+
+                        $this->setReturn("", "", ['userinfo' => $user]);
                     }
                 } else {
                     Yii::info("用户注册:密码字段为空", "apiLog");
