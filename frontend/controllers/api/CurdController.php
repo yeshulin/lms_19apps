@@ -191,6 +191,7 @@ class CurdController extends ApiController
         Yii::info("接受数据:".print_r($this->rawBody,true),"apiLog");
         if (Yii::$app->request->isPost) {
             $models=$namespace.$model;
+
             $model = new $models();
             Yii::info("接受数据:".print_r($this->rawBody,true),"apiLog");
             if ($model->load($this->rawBody) && $model->save()) {
