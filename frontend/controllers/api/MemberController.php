@@ -697,81 +697,52 @@ class MemberController extends ApiController
                     } else {
                         $this->setReturn("", "", "用户处于激活状态");
                     }
-                } else if (Yii::$app->params['allowvboss'] == 1) { //开启vboss同步
-                    Yii::info("基础信息修改):Vboss同步开始", "apiLog");
-                    $vbossinfo = $this->vboss->vboss_get($dataTicket);
-                    Yii::info("基础信息修改):Vboss信息获取." . print_r($vbossinfo, true), "apiLog");
-//                var_dump($vbossinfo);exit;
-                    if (isset($vbossinfo['code']) && $vbossinfo['code'] == 0) {
-                        $id = $vbossinfo['data']['info'][0]['id'];//vboss用户id,
-                    }
-                    foreach ($datavboss as $k => $val) {
-                        if (!in_array($k, $this->vbossupdateField)) {
-                            unset($datavboss[$k]);
-                        }
-                    }
-                    $datavboss['id'] = $id;
-                    Yii::info("基础信息修改):Vboss信息更新." . print_r($datavboss, true), "apiLog");
-//                $vbossinfo['code']=0;
-                    $vbossinfo = $this->vboss->vboss_edit($datavboss);
-                    Yii::info("基础信息修改):Vboss信息更新返回结果." . print_r($vbossinfo, true), "apiLog");
-                    if (!isset($vbossinfo['code']) || $vbossinfo['code'] != 0) {
-//                        $this->setReturn("0001", "failed");
-                        if (isset($vbossinfo['code'])) {
-                            $this->setReturn('0001', 'failed', '', $vbossinfo['msg']);
-                        } else {
-                            $this->setReturn('0001', 'failed', '', "系统错误,数据修改失败");
-                        }
-                    } else if ($vbossinfo['code'] == 0) {
-                        Yii::info("基础信息修改):Vboss更新成功", "apiLog");
-                        Yii::info("基础信息修改):本地数据更新开始", "apiLog");
-                        $model = Member::findByUsername($dataTicket['loginname']);
-                        if (isset($rawBody['Member'])) {
-                            foreach ($rawBody['Member'] as $k => $val) {
-                                if (!in_array($k, $this->vbossupdateField)) {
-                                    unset($rawBody['Member'][$k]);
-                                }
+                } else {
+                    Yii::info("基础信息修改):本地数据更新开始", "apiLog");
+                    $model = Member::findByUsername($dataTicket['loginname']);
+                    if (isset($rawBody['Member'])) {
+                        foreach ($rawBody['Member'] as $k => $val) {
+                            if (!in_array($k, $this->vbossupdateField)) {
+                                unset($rawBody['Member'][$k]);
                             }
+                        }
 //                            $model = $this->findModel($rawBody['id']);
 //                    var_dump($model);exit;
-                            if (empty($model)) {
-                                $this->setReturn("0002", "failed", '', "没有查找到用户信息");
+                        if (empty($model)) {
+                            $this->setReturn("0002", "failed", '', "没有查找到用户信息");
 //                        exit;
-                            }
+                        }
 //                            $model = $model[0];
 //                            $model->delRequired();//取消密码required属性
 //                            $model->delRules('mobile','match');//取消密码required属性
-                            if ($model->load($rawBody)) {
-                                if (isset($rawBody['Member']['password']) && $rawBody['Member']['password'] != '') {
-                                    $model->password=$rawBody['Member']['password'];
-                                    // $model->setPassword($rawBody['Member']['password']);
-                                }
-                                if($isReturn){
-                                    $res = $model->save(true,null,false);
-                                }else{
-                                    $res=$model->save();
-                                }
-                                if (!$res) {
-                                    Yii::info("基础信息修改):本地数据更新失败", "apiLog");
-                                    $this->setReturn("0001", "failed", '', $model->getErrors());
-                                }
-                                if (!$isReturn) {
-                                    $this->setReturn();
-                                }
-                            } else {
-                                Yii::info("基础信息修改):模型数据加载失败", "apiLog");
-                                $this->setReturn("0001", "failed", '', "保存数据失败,数据格式不匹配");
+                        if ($model->load($rawBody)) {
+                            if (isset($rawBody['Member']['password']) && $rawBody['Member']['password'] != '') {
+                                $model->password=$rawBody['Member']['password'];
+                                // $model->setPassword($rawBody['Member']['password']);
                             }
-                            Yii::info("基础信息修改):本地数据更新完成", "apiLog");
+                            if($isReturn){
+                                $res = $model->save(true,null,false);
+                            }else{
+                                $res=$model->save();
+                            }
+                            if (!$res) {
+                                Yii::info("基础信息修改):本地数据更新失败", "apiLog");
+                                $this->setReturn("0001", "failed", '', $model->getErrors());
+                            }
+                            if (!$isReturn) {
+                                $this->setReturn();
+                            }
                         } else {
-                            Yii::info("基础信息修改):没有传入Member信息", "apiLog");
-                            $this->setReturn("0003", "failed", '', "没有传入Member信息");
+                            Yii::info("基础信息修改):模型数据加载失败", "apiLog");
+                            $this->setReturn("0001", "failed", '', "保存数据失败,数据格式不匹配");
                         }
+                        Yii::info("基础信息修改):本地数据更新完成", "apiLog");
+                    } else {
+                        Yii::info("基础信息修改):没有传入Member信息", "apiLog");
+                        $this->setReturn("0003", "failed", '', "没有传入Member信息");
                     }
-                } else {
-                    Yii::info("基础信息修改):Vboss同步操作未开启,更新失败", "apiLog");
-                    $this->setReturn("0001", "failed", '', "同步操作未开启,更新失败");
                 }
+
             } else {
                 Yii::info("基础信息修改)：未查找到用户数据", "apiLog");
                 $this->setReturn("0001", "failed", '', "未获取到数据");

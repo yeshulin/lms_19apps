@@ -132,9 +132,11 @@ class ApiController extends Controller
 //            $userToken=md5($token);
             $token = explode("||", $this->sys_auth(Yii::$app->cache->get($token), "DECODE"));
             if (is_array($token)) {
-                $user = $this->findModel($token[0], true, "Member");
+                $user = Member::findByUserid($token[0]);
+
                 if (!empty($user) && ($token[1] >= $this->time)) {
-                    $this->_user = $user[0];
+
+                    $this->_user = $user;
                     $return = true;
                 }
             }
