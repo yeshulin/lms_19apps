@@ -86,10 +86,19 @@ class Order extends \yii\db\ActiveRecord
     {
         $pagesize = isset($page['pagesize']) ? intval($page['pagesize']) : 10;
         $page = isset($page['page']) ? intval($page['page']) : 1;
+        if(!$where['userid']){
+            unset($where['userid']);
+        }
+        if($where['topuserid']){
+            $query = self::find()->leftJoin("co_member",'co_order.userid = co_member.id')->where("co_member.top_userid=".$where['topuserid']);
+            unset($where['topuserid']);
+        }else{
+            unset($where['topuserid']);
+            $query = self::find()->where($where);
+        }
 
-        $query = self::find();
 
-        $totalCount = $query->where($where)->count();
+        $totalCount = $query->count();
         $page = $page > 0 ? $page : 1;
         $pagesize = $pagesize > 0 ? $pagesize : 1;
         if ($pagesize > 20) {
@@ -101,7 +110,7 @@ class Order extends \yii\db\ActiveRecord
         }
 
         $arrayReust = null;
-        $result = $query->where($where)->offset(($page - 1) * $pagesize)->orderBy(['created_at' => SORT_DESC])->limit($pagesize)->all();
+        $result = $query->offset(($page - 1) * $pagesize)->orderBy(['created_at' => SORT_DESC])->limit($pagesize)->all();
 
         if ($result !== null) {
             foreach ($result as $key => $value) {

@@ -35,6 +35,7 @@ class OrderController extends ApiController
         /*if ($this->isGuest()) {
         return self::setReturn('0003', 'failed', '', '未登录，请先执行登陆操作！');
         }*/
+
         $this->userid = Yii::$app->user->id;
     }
 
@@ -46,8 +47,10 @@ class OrderController extends ApiController
             'page' => $data['page'],
             'pagesize' => $data['pagesize'],
         ];
+        $userid = $data['userid'];
+        $topuserid = $data['topuserid'];
 
-        $result = Order::arrayAll(['userid' => $this->userid], $page);
+        $result = Order::arrayAll(['userid' => $userid,'topuserid'=>$topuserid], $page);
         if (empty($result)) {
             $this->setReturn("0003", "failed", "", "没有找到数据");
         } else {
