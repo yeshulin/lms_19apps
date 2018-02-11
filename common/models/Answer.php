@@ -25,7 +25,7 @@ class Answer extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'msa_answer';
+        return '{{%answer}}';
     }
 
 
@@ -39,8 +39,8 @@ class Answer extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['addtime', 'updatetime'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updatetime'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
         ];
@@ -51,7 +51,7 @@ class Answer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['qid', 'userid', 'status', 'updatetime', 'addtime', 'agree'], 'integer'],
+            [['qid', 'userid', 'status', 'updated_at', 'created_at', 'agree'], 'integer'],
             [['content'], 'string'],
             [['ip'], 'string', 'max' => 20],
         ];
@@ -69,8 +69,8 @@ class Answer extends \yii\db\ActiveRecord
             'userid' => 'Userid',
             'ip' => 'Ip',
             'status' => 'Status',
-            'updatetime' => 'Updatetime',
-            'addtime' => 'Addtime',
+            'updated_at' => 'updated_at',
+            'created_at' => 'created_at',
             'agree' => 'Agree',
         ];
     }

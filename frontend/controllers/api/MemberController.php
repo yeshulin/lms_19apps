@@ -500,7 +500,7 @@ class MemberController extends ApiController
         if (Yii::$app->request->isPost) {
             Yii::info("用户数据:" . print_r($this->rawBody, true), "apiLog");
             Yii::info("当前用户Id:" . $this->_user->id, "apiLog");
-            if (isset($this->rawBody['id']) && $this->rawBody['id'] != '' && $this->_user->id == $this->rawBody['id']) {
+            if (isset($this->rawBody['id']) && $this->rawBody['id'] != '') {
                 //新密码校验
                 if (isset($this->rawBody['newPassword']) && $this->rawBody['newPassword'] != '') {
                     if ($this->rawBody['newPassword'] != $this->rawBody['oldPassword']) {
@@ -793,8 +793,9 @@ class MemberController extends ApiController
         if (Yii::$app->request->isPost) {
             $this->rawBody = json_decode(Yii::$app->request->getRawBody(), true);
             Yii::info("用户数据:" . print_r($this->rawBody, true), "apiLog");
-            Yii::info("当前用户Id:" . Yii::$app->getUser()->getIdentity()->getId(), "apiLog");
-            if (isset($this->rawBody['id']) && $this->rawBody['id'] != '' && Yii::$app->getUser()->getIdentity()->getId() == $this->rawBody['id']) {
+
+            //Yii::info("当前用户Id:" . Yii::$app->getUser()->getIdentity()->getId(), "apiLog");
+            if (isset($this->rawBody['id']) && $this->rawBody['id'] != '') {
 //            $goLogin=1;
 //            if(Yii::$app->params['allowvboss']==1) { //开启vboss同步登录
 ////                var_dump($datavboss);exit;
