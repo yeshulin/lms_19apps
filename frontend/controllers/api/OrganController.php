@@ -10,6 +10,7 @@ use yii\filters\AccessControl;
 use frontend\models\Search\ContentSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * OrganController implements the CRUD actions for Organ model.
@@ -80,6 +81,8 @@ class OrganController extends CurdController
         }
         if(isset($this->rawBody['userid']) && $this->rawBody['userid'] != '') {
             $data = Organ::findByUserid($this->rawBody['userid']);
+            $data = $this->objarray_to_array($data);
+            $data["shareurl"] = Url::to(['member/reg','uid'=>$this->rawBody['userid']]);
             $this->setReturn('', '', $data);
         }else{
             $this->setReturn("0003", "failed", '', "缺少参数");
@@ -96,4 +99,5 @@ class OrganController extends CurdController
 //    {
 //        return $this->findModel($id,true,"Content","\\backend\\models");
 //    }
+
 }

@@ -173,6 +173,7 @@ class Organ extends \yii\db\ActiveRecord
             'card_img' => '身份证',
             'updated_at' => '更新时间',
             'usertype' => '用户类型',
+
         ];
     }
 }

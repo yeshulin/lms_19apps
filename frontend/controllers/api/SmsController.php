@@ -244,7 +244,7 @@ class SmsController extends ApiController
         }
     }
 
-    public function tpl_send_sms($apikey = '7ad8b7b3d27f2ef35a9b412dcf140ff4', $tpl_id = '', $tpl_value = '#code#=123456', $mobile)
+    public function tpl_send_sms($apikey = '10945ebd526437ebe00ce667298481c0', $tpl_id = '', $tpl_value = '#code#=123456', $mobile)
     {
         $url = "http://yunpian.com/v1/sms/tpl_send.json";
         $encoded_tpl_value = urlencode("$tpl_value");

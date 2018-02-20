@@ -150,7 +150,8 @@ $(function () {
                     "SignupForm": {
                         "mobile": $("#r-phone").val().trim(),
                         "password": $("#r-passWord").val().trim(),
-                        "loginname": $("#r-userName").val().trim()
+                        "loginname": $("#r-userName").val().trim(),
+                        "top_userid": $("#r-top_userid").val().trim()
                     },
                     "type": "mobile"
 
@@ -269,7 +270,8 @@ $(function () {
                         "SignupForm": {
                             "email": $("#r-email").val().trim(),
                             "password": $("#r-passWord-e").val().trim(),
-                            "loginname": $("#r-userName-e").val().trim()
+                            "loginname": $("#r-userName-e").val().trim(),
+                            "top_userid": $("#r-top_userid").val().trim()
                         },
                         "type": "email"
 
