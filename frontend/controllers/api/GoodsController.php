@@ -24,7 +24,7 @@ class GoodsController extends ApiController
         'live'=>Goods::TYPE_LIVE,
         'lab'=>Goods::TYPE_LAB,
         'practical'=>Goods::TYPE_PRACTICAL,
-        'certification' => Goods::TYPE_ZYRZ,
+        'vip' => Goods::TYPE_ZYRZ,
         'all'=>-1,
     ];
 

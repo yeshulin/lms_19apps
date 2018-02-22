@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 content: '<div class="field-goodssearch-type has-success" style="padding:20px;with: 500px"> ' +
                 '<select class="form-control" name="Goods[type]"> ' +
                 '<option value="<?= $searchModel::TYPE_PXCC?>">培训课程</option> ' +
-//                '<option value="<?//= $searchModel::TYPE_ZYRZ?>//">职业认证</option> ' +
+               '<option value="<?= $searchModel::TYPE_ZYRZ?>">VIP会员课程</option> ' +
                 '<option value="<?= $searchModel::TYPE_MERGE?>">组合商品</option> ' +
                 '</select> ' +
                 '<div class="help-block"></div> ' +

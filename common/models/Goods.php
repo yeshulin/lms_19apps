@@ -31,7 +31,7 @@ class Goods extends \yii\db\ActiveRecord
     const TYPE_PRACTICAL = 3; //实训
     const TYPE_LIVE = 4; //直播
     const TYPE_PXCC = 5; //培训课程
-    const TYPE_ZYRZ = 6; //职业认证
+    const TYPE_ZYRZ = 6; //VIP会员课程
     const TYPE_MERGE = 8; //组合商品
 
     //销售类型
@@ -124,11 +124,11 @@ class Goods extends \yii\db\ActiveRecord
             ],
             'type' => [
                 self::TYPE_COURSE => '视频课程',
-                self::TYPE_LAB => '实验室',
-                self::TYPE_PRACTICAL => '实训',
-                self::TYPE_LIVE => '直播',
-                self::TYPE_PXCC => '培训课程',
-                self::TYPE_ZYRZ => '职业认证',
+               // self::TYPE_LAB => '实验室',
+               // self::TYPE_PRACTICAL => '实训',
+               // self::TYPE_LIVE => '直播',
+               // self::TYPE_PXCC => '培训课程',
+                self::TYPE_ZYRZ => 'VIP会员课程',
                 self::TYPE_MERGE => '组合商品',
             ],
             'selltype' => [

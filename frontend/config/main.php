@@ -58,7 +58,7 @@ return [
                 'api/goods/<method:\w+>' => 'api/goods/index',
                 'api/goods/<type:view>/<id:\d+>' => 'api/goods/index',
                 'api/course' => 'api/course/index',
-                'api/course/<type:play>/<id:\d+>' => 'api/course/index',
+                'api/course/<type:play>' => 'api/course/index',
                 'api/course/<type:myfavorite>' => 'api/course/index',
             ],
         ],

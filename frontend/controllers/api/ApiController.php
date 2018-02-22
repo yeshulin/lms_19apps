@@ -25,7 +25,7 @@ class ApiController extends Controller
     public $_user;
     public $time;
     public $hashExpire=300;//hash有效时间
-    public $expire = 1800;//登陆token有效时间
+    public $expire = 100800;//登陆token有效时间
     public $loginType = 1;//登陆方式，1为cookie登陆，2为token登陆
     public $isLogin;
     public $response;

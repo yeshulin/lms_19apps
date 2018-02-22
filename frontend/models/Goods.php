@@ -58,6 +58,7 @@ class Goods extends ComGoods
        /* *
          * 搜索功能实现
         * */
+
         switch ($this->type)
         {
             case self::TYPE_COURSE:
@@ -78,7 +79,7 @@ class Goods extends ComGoods
                 break;
 
             case self::TYPE_ZYRZ:
-//                $query->andFilterWhere(['like', 'a.goods_name', $this->goods_name]);
+                //$query->andFilterWhere(['like', 'a.goods_name', $this->goods_name]);
                 break;
 
             case self::TYPE_PXCC:
@@ -201,7 +202,7 @@ class Goods extends ComGoods
                 break;
 
             case self::TYPE_ZYRZ:
-                $query->innerJoinWith(['certification b']);
+               // $query->innerJoinWith(['certification b']);
                 break;
         }
         return $query;
